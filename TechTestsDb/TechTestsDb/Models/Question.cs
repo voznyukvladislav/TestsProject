@@ -19,6 +19,6 @@ namespace TechTestsDb.Models
         public int TypeId { get; set; }
 
         public List<Category> Categories { get; set; } = new();
-        public List<Answear> Answears { get; set; } = new();
+        public List<Answer> Answears { get; set; } = new();
     }
 }

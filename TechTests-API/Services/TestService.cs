@@ -57,7 +57,7 @@ namespace TechTests_API.Services
                     .Include(q => q.Categories)
                     .Include(q => q.Type)
                     .Include(q => q.Answears)
-                    .ThenInclude(a => a.AnswearValues)
+                    .ThenInclude(a => a.AnswerValues)
                     .First());
             }
 
@@ -173,7 +173,7 @@ namespace TechTests_API.Services
 
         private int CheckFirstType(Question question, string answear)
         {
-            if (question.Answears[0].AnswearValues[0].Value == answear)
+            if (question.Answears[0].AnswerValues[0].Value == answear)
             {
                 return Constants.FIRST_TYPE_POINTS;
             }
@@ -182,7 +182,7 @@ namespace TechTests_API.Services
 
         private int CheckSecondType(Question question, string answear)
         {
-            if (question.Answears[0].AnswearValues.Any(av => av.Value == answear))
+            if (question.Answears[0].AnswerValues.Any(av => av.Value == answear))
             {
                 return Constants.SECOND_TYPE_POINTS;
             }
@@ -202,7 +202,7 @@ namespace TechTests_API.Services
                 {
                     if (!ignoredIndexes.Contains(j))
                     {
-                        if (question.Answears[j].AnswearValues.Any(av => av.Value == answears[i]))
+                        if (question.Answears[j].AnswerValues.Any(av => av.Value == answears[i]))
                         {
                             correct++;
                             ignoredIndexes.Add(j);

@@ -13,9 +13,9 @@ namespace TechTestsDb.Data
         public DbSet<Category> Categories { get; set; }
         public DbSet<Models.Type> Types { get; set; }
         public DbSet<Description> Descriptions { get; set; }
-        public DbSet<Answear> Answears { get; set; }
+        public DbSet<Answer> Answers { get; set; }
         public DbSet<Question> Questions { get; set; }
-        public DbSet<AnswearValue> AnswearValues { get; set; }
+        public DbSet<AnswerValue> AnswerValues { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

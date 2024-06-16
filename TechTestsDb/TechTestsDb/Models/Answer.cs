@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace TechTestsDb.Models
 {
-    internal class Answear
+    internal class Answer
     {
         public int Id { get; set; }
-        public List<AnswearValue> AnswearValues { get; set; } = new();
+        public List<AnswerValue> AnswerValues { get; set; } = new();
 
         public Question Question { get; set; } = new();
         public int QuestionId { get; set; }

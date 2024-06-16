@@ -10,7 +10,7 @@ export class OpenaiApiService {
 
   request(messages: any[]) {
     let address: string = 'https://api.openai.com/v1/chat/completions';
-    
+    let apiKey: string = 'sk-proj-a9aXchVzrgBjM8vVKOirT3BlbkFJl618tjUqW93ItqKyd5Mj';
 
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',

@@ -40,8 +40,8 @@ namespace TechTests_API.Controllers
                 this.DbContext.Categories.RemoveRange(this.DbContext.Categories.ToList());
                 this.DbContext.Descriptions.RemoveRange(this.DbContext.Descriptions.ToList());
                 this.DbContext.Types.RemoveRange(this.DbContext.Types.ToList());
-                this.DbContext.Answears.RemoveRange(this.DbContext.Answears.ToList());
-                this.DbContext.AnswearValues.RemoveRange(this.DbContext.AnswearValues.ToList());
+                this.DbContext.Answers.RemoveRange(this.DbContext.Answers.ToList());
+                this.DbContext.AnswerValues.RemoveRange(this.DbContext.AnswerValues.ToList());
                 this.DbContext.Questions.RemoveRange(this.DbContext.Questions.ToList());
 
                 this.DbContext.SaveChanges();

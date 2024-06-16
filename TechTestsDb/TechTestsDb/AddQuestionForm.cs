@@ -73,7 +73,7 @@ namespace TechTestsDb
         private void addAnswearButton_Click(object sender, EventArgs e)
         {
             List<string> answears = new List<string>();
-            this.Question.Answears.Add(new Answear());
+            this.Question.Answears.Add(new Answer());
             for (int i = 1; i <= this.Question.Answears.Count; i++)
             {
                 answears.Add($"{i}");
@@ -86,11 +86,11 @@ namespace TechTestsDb
 
         private void addAnswearsButton_Click(object sender, EventArgs e)
         {
-            this.Question.Answears[this.SelectedAnswearIndex].AnswearValues = new();
+            this.Question.Answears[this.SelectedAnswearIndex].AnswerValues = new();
             List<string> answearValues = this.answearTextBox.Text.Split('\n').ToList();
             for (int i = 0; i < answearValues.Count; i++)
             {
-                this.Question.Answears[this.SelectedAnswearIndex].AnswearValues.Add(new AnswearValue() { Value = answearValues[i] });
+                this.Question.Answears[this.SelectedAnswearIndex].AnswerValues.Add(new AnswerValue() { Value = answearValues[i] });
             }
         }
 
@@ -98,9 +98,9 @@ namespace TechTestsDb
         {
             this.SelectedAnswearIndex = this.answearsComboBox.SelectedIndex;
             this.answearTextBox.Text = string.Empty;
-            for (int i = 0; i < this.Question.Answears[this.SelectedAnswearIndex].AnswearValues.Count; i++)
+            for (int i = 0; i < this.Question.Answears[this.SelectedAnswearIndex].AnswerValues.Count; i++)
             {
-                this.answearTextBox.Text += $"{this.Question.Answears[this.SelectedAnswearIndex].AnswearValues[i].Value}\r\n";
+                this.answearTextBox.Text += $"{this.Question.Answears[this.SelectedAnswearIndex].AnswerValues[i].Value}\r\n";
             }
         }
 
@@ -145,13 +145,13 @@ namespace TechTestsDb
         private void yesRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             this.Question.Answears = new();
-            this.Question.Answears.Add(new Answear() { AnswearValues = new List<AnswearValue>() { new AnswearValue { Value = "Так" } } });
+            this.Question.Answears.Add(new Answer() { AnswerValues = new List<AnswerValue>() { new AnswerValue { Value = "Так" } } });
         }
 
         private void noRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             this.Question.Answears = new();
-            this.Question.Answears.Add(new Answear() { AnswearValues = new List<AnswearValue>() { new AnswearValue { Value = "Так" } } });
+            this.Question.Answears.Add(new Answer() { AnswerValues = new List<AnswerValue>() { new AnswerValue { Value = "Так" } } });
         }
 
         private void resetButton_Click(object sender, EventArgs e)

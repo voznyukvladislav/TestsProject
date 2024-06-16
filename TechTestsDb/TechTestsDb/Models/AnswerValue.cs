@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace TechTestsDb.Models
 {
-    internal class AnswearValue
+    internal class AnswerValue
     {
         public int Id { get; set; }
         public string Value { get; set; } = string.Empty;
 
-        public Answear Answear { get; set; } = new();
-        public int AnswearId { get; set; }
+        public Answer Answer { get; set; } = new();
+        public int AnswerId { get; set; }
     }
 }
