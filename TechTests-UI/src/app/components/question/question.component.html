@@ -1,0 +1,11 @@
+<div class="question-wrapper">
+    <div class="type-category">
+        <div>Тип запитання: {{question.type}}</div>
+        <div>Категорія: {{question.categories}}</div>
+    </div>
+    <div class="description" *ngIf="question.description">{{question.description}}</div>
+    <div class="question">{{question.question}}</div>
+    <app-type1form *ngIf="question.type == 'I'" (answear)="setAnswear($event)" [answearText]="question.answear"></app-type1form>
+    <app-type2form *ngIf="question.type == 'II'" (answear)="setAnswear($event)" [answearText]="question.answear"></app-type2form>
+    <app-type3form *ngIf="question.type == 'III'" (answear)="setAnswear($event)" [answearText]="question.answear"></app-type3form>
+</div>

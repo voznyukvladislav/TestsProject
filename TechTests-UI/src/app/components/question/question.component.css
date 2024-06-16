@@ -1,0 +1,25 @@
+.question-wrapper {
+    display: flex;
+    flex-direction: column;
+    color: var(--font-color);
+}
+.type-category {
+    border-bottom: 1px solid black;
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+    font-weight: 400;
+    padding: 5px 20px;
+}
+.description {
+    border-bottom: 1px solid black;
+    font-size: 16px;
+    font-weight: 400;
+    padding: 5px 20px;
+}
+.question {
+    border-bottom: 1px solid black;
+    font-size: 16px;
+    font-weight: 400;
+    padding: 5px 20px;
+}

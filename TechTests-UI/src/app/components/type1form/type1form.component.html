@@ -1,0 +1,10 @@
+<div class="form-wrapper">
+    <div class="button" (click)="yes()" [ngClass]="{'clicked': answearText == 'Так'}">
+        <div class="item">Так</div>
+        <div class="item">✓</div>
+    </div>
+    <div class="button" (click)="no()" [ngClass]="{'clicked': answearText == 'Ні'}">
+        <div class="item">Ні</div>
+        <div class="item">×</div>
+    </div>
+</div>

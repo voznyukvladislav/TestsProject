@@ -1,0 +1,19 @@
+<div class="chat-window-wrapper">
+    <div class="header">
+        <div class="title">Інтелектуальний помічник</div>
+        <div class="cross" (click)="chat()">×</div>
+    </div>
+    <div class="chat" id="chat">
+        <div *ngFor="let message of messages">
+            <div [ngClass]="{'message-wrapper-user': message.role == 'user', 'message-wrapper-assistant': message.role != 'user'}">
+                <div class="message">
+                    {{message.content}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <input class="input" #input type="text" placeholder="Введіть ваше повідомлення" [(ngModel)]="messageText" (keydown.enter)="sendMessage()">
+        <div class="button" (click)="sendMessage()">Відправити</div>
+    </div>
+</div>

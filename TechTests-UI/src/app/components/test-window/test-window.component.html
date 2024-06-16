@@ -1,0 +1,9 @@
+<div *ngIf="questions.length != 0" class="test-window-wrapper">
+    <div class="test-window-header">{{questions[questionIndex].title}}</div>
+    <app-question id="question-block" (notifyTestService)="notifyTestService()" [question]="questions[questionIndex]"></app-question>
+    <div class="footer">
+        <div class="button" (click)="left()"><</div>
+        <div class="pagination">{{questionIndex + 1}} / {{questions.length}}</div>
+        <div class="button" (click)="right()">></div>
+    </div>
+</div>

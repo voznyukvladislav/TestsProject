@@ -1,0 +1,24 @@
+.form {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+.answear {
+    width: 80%;
+    min-height: 200px;
+    padding: 10px;
+    outline: 2px solid var(--secondary-color);
+    border-radius: 20px;
+    background-color: #222222;
+    color: var(--font-color);
+    font-size: 18px;
+    transition: var(--fast-transition);
+    box-sizing: border-box;
+    border: 0;
+    resize: none;
+    font-family: "Open Sans", sans-serif;
+    font-optical-sizing: auto;
+}
+.answear:focus {
+    outline: 5px solid var(--secondary-color);
+}

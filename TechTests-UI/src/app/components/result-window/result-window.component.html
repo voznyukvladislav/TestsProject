@@ -1,0 +1,32 @@
+<div class="result-window-wrapper">
+    <div class="header">
+        <div class="header-item">{{result.title}}</div>
+        <div class="header-item cross" (click)="close()">×</div>
+    </div>
+    <div class="content">
+        <div class="category" *ngFor="let category of result.categoryResults">
+            <div class="category-item">
+                <div>Назва категорії</div>
+                <div>{{category.categoryName}}</div>
+            </div>
+            <div class="category-item">
+                <div>Кількість балів</div>
+                <div>{{category.result}} / {{category.total}}</div>
+            </div>
+            <div class="category-item">
+                <div>Відсоток</div>
+                <div>{{category.percentage}}</div>
+            </div>
+        </div>
+        <div class="category">
+            <div class="category-item">
+                <div>Загальна кількість балів</div>
+                <div>{{result.result}} / {{result.total}}</div>
+            </div>
+            <div class="category-item">
+                <div>Загальний відсоток</div>
+                <div>{{result.percentage}}</div>
+            </div>
+        </div>
+    </div>
+</div>

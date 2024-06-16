@@ -1,0 +1,20 @@
+.form {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+.answear {
+    width: 80%;
+    padding: 15px;
+    outline: 2px solid var(--secondary-color);
+    border-radius: 20px;
+    background-color: #222222;
+    color: var(--font-color);
+    font-size: 18px;
+    transition: var(--fast-transition);
+    box-sizing: border-box;
+    border: 0;
+}
+.answear:focus {
+    outline: 5px solid var(--secondary-color);
+}
