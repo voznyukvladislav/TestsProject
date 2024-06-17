@@ -59,6 +59,7 @@ namespace TechTestsDb
             {
                 this.Question.Description = null;
                 this.Question.DescriptionId = null;
+                this.descriptionTextBox.Text = string.Empty;
             }
             else if (this.descriptionIdsComboBox.SelectedIndex != 0)
             {
@@ -79,15 +80,15 @@ namespace TechTestsDb
                 answears.Add($"{i}");
             }
 
-            this.answearsComboBox.DataSource = answears;
+            this.answersComboBox.DataSource = answears;
 
-            this.answearsComboBox.SelectedIndex = this.Question.Answears.Count - 1;
+            this.answersComboBox.SelectedIndex = this.Question.Answears.Count - 1;
         }
 
         private void addAnswearsButton_Click(object sender, EventArgs e)
         {
             this.Question.Answears[this.SelectedAnswearIndex].AnswerValues = new();
-            List<string> answearValues = this.answearTextBox.Text.Split('\n').ToList();
+            List<string> answearValues = this.answearTextBox.Text.Split("\r\n").ToList();
             for (int i = 0; i < answearValues.Count; i++)
             {
                 this.Question.Answears[this.SelectedAnswearIndex].AnswerValues.Add(new AnswerValue() { Value = answearValues[i] });
@@ -96,7 +97,7 @@ namespace TechTestsDb
 
         private void answearsComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.SelectedAnswearIndex = this.answearsComboBox.SelectedIndex;
+            this.SelectedAnswearIndex = this.answersComboBox.SelectedIndex;
             this.answearTextBox.Text = string.Empty;
             for (int i = 0; i < this.Question.Answears[this.SelectedAnswearIndex].AnswerValues.Count; i++)
             {
@@ -156,6 +157,9 @@ namespace TechTestsDb
 
         private void resetButton_Click(object sender, EventArgs e)
         {
+            /*this.DbContext.Questions.Remove(this.DbContext.Questions.First(q => q.Id == 35));
+            this.DbContext.SaveChanges();*/
+            
             this.Reset();
         }
 
@@ -179,13 +183,18 @@ namespace TechTestsDb
 
             this.isCaseSensitive.Checked = false;
 
-            this.answearsComboBox.DataSource = new List<string>();
+            this.answersComboBox.DataSource = new List<string>();
 
             this.SelectedAnswearIndex = -1;
 
             this.Question = new();
             this.Question.Description = null;
             this.Question.DescriptionId = null;
+        }
+
+        private void isCaseSensitive_CheckedChanged(object sender, EventArgs e)
+        {
+            this.Question.IsCaseSensitive = !this.Question.IsCaseSensitive;
         }
     }
 }

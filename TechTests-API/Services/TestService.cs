@@ -47,16 +47,16 @@ namespace TechTests_API.Services
             return questionDTOs;
         }
 
-        public ResultDTO AnswearTest(List<AnswearedQuestionDTO> answearedQuestions)
+        public ResultDTO AnswerTest(List<AnsweredQuestionDTO> answeredQuestions)
         {
             List<Question> questions = new();
-            for (int i = 0; i < answearedQuestions.Count; i++)
+            for (int i = 0; i < answeredQuestions.Count; i++)
             {
                 questions.Add(this.DbContext.Questions
-                    .Where(q => q.Id == answearedQuestions[i].Id)
+                    .Where(q => q.Id == answeredQuestions[i].Id)
                     .Include(q => q.Categories)
                     .Include(q => q.Type)
-                    .Include(q => q.Answears)
+                    .Include(q => q.Answers)
                     .ThenInclude(a => a.AnswerValues)
                     .First());
             }
@@ -122,17 +122,17 @@ namespace TechTests_API.Services
                 double questionPoints = 0;
                 if (questions[i].Type.Name == "I")
                 {
-                    questionPoints = this.CheckFirstType(questions[i], answearedQuestions[i].Answear);
+                    questionPoints = this.CheckFirstType(questions[i], answeredQuestions[i].Answer);
                     result.Result += questionPoints;
                 }
                 else if (questions[i].Type.Name == "II")
                 {
-                    questionPoints = this.CheckSecondType(questions[i], answearedQuestions[i].Answear);
+                    questionPoints = this.CheckSecondType(questions[i], answeredQuestions[i].Answer);
                     result.Result += questionPoints;
                 }
                 else if (questions[i].Type.Name == "III")
                 {
-                    questionPoints = this.CheckThirdType(questions[i], answearedQuestions[i].Answear);
+                    questionPoints = this.CheckThirdType(questions[i], answeredQuestions[i].Answer);
                     result.Result += questionPoints;
                 }
 
@@ -171,38 +171,38 @@ namespace TechTests_API.Services
             return categories;
         }
 
-        private int CheckFirstType(Question question, string answear)
+        private int CheckFirstType(Question question, string answer)
         {
-            if (question.Answears[0].AnswerValues[0].Value == answear)
+            if (question.Answers[0].AnswerValues[0].Value == answer)
             {
                 return Constants.FIRST_TYPE_POINTS;
             }
             else return 0;
         }
 
-        private int CheckSecondType(Question question, string answear)
+        private int CheckSecondType(Question question, string answer)
         {
-            if (question.Answears[0].AnswerValues.Any(av => av.Value == answear))
+            if (question.Answers[0].AnswerValues.Any(av => av.Value == answer))
             {
                 return Constants.SECOND_TYPE_POINTS;
             }
             else return 0;
         }
 
-        private double CheckThirdType(Question question, string answear)
+        private double CheckThirdType(Question question, string answer)
         {
-            List<string> answears = answear.Split('\n').ToList();
+            List<string> answers = answer.Split('\n').ToList();
 
             double correct = 0;
             List<int> ignoredIndexes = new();
             
-            for (int i = 0; i < answears.Count; i++)
+            for (int i = 0; i < answers.Count; i++)
             {
-                for (int j = 0; j < question.Answears.Count; j++)
+                for (int j = 0; j < question.Answers.Count; j++)
                 {
                     if (!ignoredIndexes.Contains(j))
                     {
-                        if (question.Answears[j].AnswerValues.Any(av => av.Value == answears[i]))
+                        if (question.Answers[j].AnswerValues.Any(av => av.Value == answers[i]))
                         {
                             correct++;
                             ignoredIndexes.Add(j);
@@ -212,12 +212,12 @@ namespace TechTests_API.Services
                 }
             }
 
-            double answearsCount = this.DbContext.Questions.Where(q => q.Id == question.Id)
-                .Include(q => q.Answears)
+            double answersCount = this.DbContext.Questions.Where(q => q.Id == question.Id)
+                .Include(q => q.Answers)
                 .First()
-                .Answears.Count;
+                .Answers.Count;
 
-            double result = (correct / answearsCount) * Constants.THIRD_TYPE_POINTS;
+            double result = (correct / answersCount) * Constants.THIRD_TYPE_POINTS;
             result = Math.Round(result, 2);
 
             return result;

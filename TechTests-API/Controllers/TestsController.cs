@@ -36,12 +36,12 @@ namespace TechTests_API.Controllers
         }
 
         [HttpPost]
-        [Route("answearTest")]
-        public IActionResult AnswearTest(List<AnswearedQuestionDTO> questions)
+        [Route("answerTest")]
+        public IActionResult AnswerTest(List<AnswearedQuestionDTO> questions)
         {
             try
             {
-                ResultDTO result = this.TestService.AnswearTest(questions);
+                ResultDTO result = this.TestService.AnswerTest(questions);
 
                 return Ok(result);
             }

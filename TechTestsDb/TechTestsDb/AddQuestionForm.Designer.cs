@@ -40,18 +40,18 @@
             categoriesComboBox = new ComboBox();
             label3 = new Label();
             groupBox1 = new GroupBox();
-            addAnswearsButton = new Button();
+            isCaseSensitive = new CheckBox();
+            addAnswersButton = new Button();
             resetButton = new Button();
             answearTextBox = new TextBox();
-            addAnswearButton = new Button();
+            addAnswerButton = new Button();
             label4 = new Label();
-            answearsComboBox = new ComboBox();
+            answersComboBox = new ComboBox();
             groupBox3 = new GroupBox();
             type3RadioButton = new RadioButton();
             type2RadioButton = new RadioButton();
             type1RadioButton = new RadioButton();
             categoriesTextBox = new TextBox();
-            isCaseSensitive = new CheckBox();
             groupBox2.SuspendLayout();
             groupBox1.SuspendLayout();
             groupBox3.SuspendLayout();
@@ -112,7 +112,7 @@
             groupBox2.Size = new Size(225, 91);
             groupBox2.TabIndex = 6;
             groupBox2.TabStop = false;
-            groupBox2.Text = "Select answear";
+            groupBox2.Text = "Select answer";
             // 
             // noRadioButton
             // 
@@ -170,12 +170,12 @@
             // groupBox1
             // 
             groupBox1.Controls.Add(isCaseSensitive);
-            groupBox1.Controls.Add(addAnswearsButton);
+            groupBox1.Controls.Add(addAnswersButton);
             groupBox1.Controls.Add(resetButton);
             groupBox1.Controls.Add(answearTextBox);
-            groupBox1.Controls.Add(addAnswearButton);
+            groupBox1.Controls.Add(addAnswerButton);
             groupBox1.Controls.Add(label4);
-            groupBox1.Controls.Add(answearsComboBox);
+            groupBox1.Controls.Add(answersComboBox);
             groupBox1.Controls.Add(groupBox3);
             groupBox1.Controls.Add(categoriesTextBox);
             groupBox1.Controls.Add(label3);
@@ -194,15 +194,26 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Create New Question";
             // 
-            // addAnswearsButton
+            // isCaseSensitive
             // 
-            addAnswearsButton.Location = new Point(631, 459);
-            addAnswearsButton.Name = "addAnswearsButton";
-            addAnswearsButton.Size = new Size(378, 29);
-            addAnswearsButton.TabIndex = 17;
-            addAnswearsButton.Text = "Add answears";
-            addAnswearsButton.UseVisualStyleBackColor = true;
-            addAnswearsButton.Click += addAnswearsButton_Click;
+            isCaseSensitive.AutoSize = true;
+            isCaseSensitive.Location = new Point(400, 249);
+            isCaseSensitive.Name = "isCaseSensitive";
+            isCaseSensitive.Size = new Size(134, 24);
+            isCaseSensitive.TabIndex = 18;
+            isCaseSensitive.Text = "Is case sensitive";
+            isCaseSensitive.UseVisualStyleBackColor = true;
+            isCaseSensitive.CheckedChanged += isCaseSensitive_CheckedChanged;
+            // 
+            // addAnswersButton
+            // 
+            addAnswersButton.Location = new Point(631, 459);
+            addAnswersButton.Name = "addAnswersButton";
+            addAnswersButton.Size = new Size(378, 29);
+            addAnswersButton.TabIndex = 17;
+            addAnswersButton.Text = "Add answers";
+            addAnswersButton.UseVisualStyleBackColor = true;
+            addAnswersButton.Click += addAnswearsButton_Click;
             // 
             // resetButton
             // 
@@ -224,33 +235,33 @@
             answearTextBox.Size = new Size(378, 143);
             answearTextBox.TabIndex = 15;
             // 
-            // addAnswearButton
+            // addAnswerButton
             // 
-            addAnswearButton.Location = new Point(902, 275);
-            addAnswearButton.Name = "addAnswearButton";
-            addAnswearButton.Size = new Size(107, 29);
-            addAnswearButton.TabIndex = 14;
-            addAnswearButton.Text = "Add";
-            addAnswearButton.UseVisualStyleBackColor = true;
-            addAnswearButton.Click += addAnswearButton_Click;
+            addAnswerButton.Location = new Point(902, 275);
+            addAnswerButton.Name = "addAnswerButton";
+            addAnswerButton.Size = new Size(107, 29);
+            addAnswerButton.TabIndex = 14;
+            addAnswerButton.Text = "Add";
+            addAnswerButton.UseVisualStyleBackColor = true;
+            addAnswerButton.Click += addAnswearButton_Click;
             // 
             // label4
             // 
             label4.AutoSize = true;
             label4.Location = new Point(631, 253);
             label4.Name = "label4";
-            label4.Size = new Size(124, 20);
+            label4.Size = new Size(116, 20);
             label4.TabIndex = 13;
-            label4.Text = "Select answear id";
+            label4.Text = "Select answer id";
             // 
-            // answearsComboBox
+            // answersComboBox
             // 
-            answearsComboBox.FormattingEnabled = true;
-            answearsComboBox.Location = new Point(631, 276);
-            answearsComboBox.Name = "answearsComboBox";
-            answearsComboBox.Size = new Size(265, 28);
-            answearsComboBox.TabIndex = 12;
-            answearsComboBox.SelectedIndexChanged += answearsComboBox_SelectedIndexChanged;
+            answersComboBox.FormattingEnabled = true;
+            answersComboBox.Location = new Point(631, 276);
+            answersComboBox.Name = "answersComboBox";
+            answersComboBox.Size = new Size(265, 28);
+            answersComboBox.TabIndex = 12;
+            answersComboBox.SelectedIndexChanged += answearsComboBox_SelectedIndexChanged;
             // 
             // groupBox3
             // 
@@ -309,16 +320,6 @@
             categoriesTextBox.Size = new Size(378, 155);
             categoriesTextBox.TabIndex = 10;
             // 
-            // isCaseSensitive
-            // 
-            isCaseSensitive.AutoSize = true;
-            isCaseSensitive.Location = new Point(400, 249);
-            isCaseSensitive.Name = "isCaseSensitive";
-            isCaseSensitive.Size = new Size(134, 24);
-            isCaseSensitive.TabIndex = 18;
-            isCaseSensitive.Text = "Is case sensitive";
-            isCaseSensitive.UseVisualStyleBackColor = true;
-            // 
             // AddQuestionForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -351,15 +352,15 @@
         private GroupBox groupBox1;
         private TextBox categoriesTextBox;
         private TextBox answearTextBox;
-        private Button addAnswearButton;
+        private Button addAnswerButton;
         private Label label4;
-        private ComboBox answearsComboBox;
+        private ComboBox answersComboBox;
         private GroupBox groupBox3;
         private RadioButton type3RadioButton;
         private RadioButton type2RadioButton;
         private RadioButton type1RadioButton;
         private Button resetButton;
-        private Button addAnswearsButton;
+        private Button addAnswersButton;
         private CheckBox isCaseSensitive;
     }
 }

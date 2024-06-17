@@ -39,7 +39,7 @@ namespace TechTestsDb
                 this.DbContext.SaveChanges();
 
                 this.categoryNameTextBox.Text = string.Empty;
-            }            
+            }
         }
 
         private void addDescriptionButton_Click(object sender, EventArgs e)
@@ -52,6 +52,18 @@ namespace TechTestsDb
 
                 this.descriptionNameTextBox.Text = string.Empty;
             }
+        }
+
+        private void clearDbButton_Click(object sender, EventArgs e)
+        {
+            this.DbContext.Categories.RemoveRange(this.DbContext.Categories.ToList());
+            this.DbContext.Descriptions.RemoveRange(this.DbContext.Descriptions.ToList());
+            this.DbContext.Types.RemoveRange(this.DbContext.Types.ToList());
+            this.DbContext.Answers.RemoveRange(this.DbContext.Answers.ToList());
+            this.DbContext.AnswerValues.RemoveRange(this.DbContext.AnswerValues.ToList());
+            this.DbContext.Questions.RemoveRange(this.DbContext.Questions.ToList());
+
+            this.DbContext.SaveChanges();
         }
     }
 }

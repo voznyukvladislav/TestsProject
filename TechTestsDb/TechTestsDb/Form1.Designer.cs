@@ -36,6 +36,7 @@
             descriptionNameTextBox = new TextBox();
             seedButton = new Button();
             addQuestionButton = new Button();
+            clearDbButton = new Button();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             SuspendLayout();
@@ -101,7 +102,7 @@
             seedButton.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             seedButton.Location = new Point(282, 12);
             seedButton.Name = "seedButton";
-            seedButton.Size = new Size(75, 266);
+            seedButton.Size = new Size(99, 128);
             seedButton.TabIndex = 4;
             seedButton.Text = "SEED";
             seedButton.UseVisualStyleBackColor = true;
@@ -118,17 +119,29 @@
             addQuestionButton.UseVisualStyleBackColor = true;
             addQuestionButton.Click += addQuestionButton_Click;
             // 
+            // clearDbButton
+            // 
+            clearDbButton.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            clearDbButton.Location = new Point(282, 142);
+            clearDbButton.Name = "clearDbButton";
+            clearDbButton.Size = new Size(99, 138);
+            clearDbButton.TabIndex = 6;
+            clearDbButton.Text = "CLEAR DB";
+            clearDbButton.UseVisualStyleBackColor = true;
+            clearDbButton.Click += clearDbButton_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(363, 288);
+            ClientSize = new Size(393, 288);
+            Controls.Add(clearDbButton);
             Controls.Add(addQuestionButton);
             Controls.Add(seedButton);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Name = "Form1";
-            Text = "Form1";
+            Text = "TechTestsDb";
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             groupBox2.ResumeLayout(false);
@@ -146,5 +159,6 @@
         private TextBox descriptionNameTextBox;
         private Button seedButton;
         private Button addQuestionButton;
+        private Button clearDbButton;
     }
 }
