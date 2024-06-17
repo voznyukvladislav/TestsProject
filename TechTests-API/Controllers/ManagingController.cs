@@ -32,6 +32,23 @@ namespace TechTests_API.Controllers
         }
 
         [HttpDelete]
+        [Route("deleteQuestion")]
+        public IActionResult DeleteQuestion(int id)
+        {
+            try
+            {
+                this.DbContext.Questions.Remove(this.DbContext.Questions.First(q => q.Id == id));
+                this.DbContext.SaveChanges();
+
+                return NoContent();
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
+
+        [HttpDelete]
         [Route("clearDb")]
         public IActionResult ClearDb()
         {

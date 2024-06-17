@@ -5,5 +5,5 @@ export class Question {
     description: string = '';
     categories: string = '';
     type: string = '';
-    answear: string = '';
+    answer: string = '';
 }

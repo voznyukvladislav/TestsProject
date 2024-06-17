@@ -11,7 +11,13 @@ export class ResultWindowComponent implements OnInit {
 
   @Input() result: Result = new Result();
 
-  constructor(private resultService: ResultService) { }
+  aiHelpCounter: number = 0;
+
+  constructor(private resultService: ResultService) {
+    this.resultService.aiHelpCounterSubject.subscribe(counter => {
+      this.aiHelpCounter = counter;
+    })
+  }
 
   ngOnInit(): void {
   }

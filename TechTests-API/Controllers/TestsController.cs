@@ -37,7 +37,7 @@ namespace TechTests_API.Controllers
 
         [HttpPost]
         [Route("answerTest")]
-        public IActionResult AnswerTest(List<AnswearedQuestionDTO> questions)
+        public IActionResult AnswerTest(List<AnsweredQuestionDTO> questions)
         {
             try
             {

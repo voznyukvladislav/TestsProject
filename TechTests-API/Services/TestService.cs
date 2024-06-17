@@ -61,6 +61,30 @@ namespace TechTests_API.Services
                     .First());
             }
 
+            // User answers to lower case
+            for (int i = 0; i < answeredQuestions.Count; i++)
+            {
+                if (questions.First(q => q.Id == answeredQuestions[i].Id).IsCaseSensitive == false)
+                {
+                    answeredQuestions[i].Answer = answeredQuestions[i].Answer.ToLower();
+                }
+            }
+
+            // Question answers to lower case
+            for (int i = 0; i < questions.Count; i++)
+            {
+                if (!questions[i].IsCaseSensitive)
+                {
+                    for (int j = 0; j < questions[i].Answers.Count; j++)
+                    {
+                        for (int k = 0; k < questions[i].Answers[j].AnswerValues.Count; k++)
+                        {
+                            questions[i].Answers[j].AnswerValues[k].Value = questions[i].Answers[j].AnswerValues[k].Value.ToLower();
+                        }
+                    }
+                }
+            }
+
             ResultDTO result = new ResultDTO();
             result.Title = "Результати тесту";
             result.Total = questions.Sum(q =>

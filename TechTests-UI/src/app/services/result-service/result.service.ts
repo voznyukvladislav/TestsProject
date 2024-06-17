@@ -13,6 +13,9 @@ export class ResultService {
   public isOpenedResult: boolean = false;
   public isOpenedResultSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(this.isOpenedResult);
 
+  public aiHelpCounter: number = 0;
+  public aiHelpCounterSubject: BehaviorSubject<number> = new BehaviorSubject<number>(this.aiHelpCounter);
+
   constructor() { }
 
 }

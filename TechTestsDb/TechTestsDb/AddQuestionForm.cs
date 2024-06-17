@@ -152,14 +152,14 @@ namespace TechTestsDb
         private void noRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             this.Question.Answears = new();
-            this.Question.Answears.Add(new Answer() { AnswerValues = new List<AnswerValue>() { new AnswerValue { Value = "Так" } } });
+            this.Question.Answears.Add(new Answer() { AnswerValues = new List<AnswerValue>() { new AnswerValue { Value = "Ні" } } });
         }
 
         private void resetButton_Click(object sender, EventArgs e)
         {
-            /*this.DbContext.Questions.Remove(this.DbContext.Questions.First(q => q.Id == 35));
+            /*this.DbContext.Questions.Remove(this.DbContext.Questions.First(q => q.Id == 40));
             this.DbContext.SaveChanges();*/
-            
+
             this.Reset();
         }
 
@@ -186,6 +186,8 @@ namespace TechTestsDb
             this.answersComboBox.DataSource = new List<string>();
 
             this.SelectedAnswearIndex = -1;
+
+            this.answersComboBox.Text = string.Empty;
 
             this.Question = new();
             this.Question.Description = null;

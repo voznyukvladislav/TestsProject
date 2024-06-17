@@ -5,7 +5,7 @@
     </div>
     <div class="description" *ngIf="question.description">{{question.description}}</div>
     <div class="question">{{question.question}}</div>
-    <app-type1form *ngIf="question.type == 'I'" (answear)="setAnswear($event)" [answearText]="question.answear"></app-type1form>
-    <app-type2form *ngIf="question.type == 'II'" (answear)="setAnswear($event)" [answearText]="question.answear"></app-type2form>
-    <app-type3form *ngIf="question.type == 'III'" (answear)="setAnswear($event)" [answearText]="question.answear"></app-type3form>
+    <app-type1form *ngIf="question.type == 'I'" (answer)="setAnswer($event)" [answerText]="question.answer"></app-type1form>
+    <app-type2form *ngIf="question.type == 'II'" (answer)="setAnswer($event)" [answerText]="question.answer"></app-type2form>
+    <app-type3form *ngIf="question.type == 'III'" (answer)="setAnswer($event)" [answerText]="question.answer"></app-type3form>
 </div>

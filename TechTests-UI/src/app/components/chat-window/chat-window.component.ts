@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ChatService } from 'src/app/services/chat-service/chat.service';
 import { OpenaiApiService } from 'src/app/services/openai-api-service/openai-api.service';
+import { ResultService } from 'src/app/services/result-service/result.service';
 
 @Component({
   selector: 'app-chat-window',
@@ -14,7 +15,7 @@ export class ChatWindowComponent implements OnInit {
   messages: any[] = [];
   messageText: string = '';
 
-  constructor(private chatService: ChatService, private openaiApiService: OpenaiApiService) { }
+  constructor(private chatService: ChatService, private openaiApiService: OpenaiApiService, private resultService: ResultService) { }
 
   ngOnInit(): void {
   }
@@ -32,9 +33,11 @@ export class ChatWindowComponent implements OnInit {
     });
 
     this.openaiApiService.request(this.messages).subscribe((response: any) => {
-      console.log(response);
       let assistantMessage = response.choices[0].message;
       this.messages.push(assistantMessage);
+
+      this.resultService.aiHelpCounter++;
+      this.resultService.aiHelpCounterSubject.next(this.resultService.aiHelpCounter);
 
       setTimeout(() => {
         chatWindow?.scrollTo(0, chatWindow.scrollHeight);

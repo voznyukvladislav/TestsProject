@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AnswearedQuestion } from 'src/app/data/answearedQuestion';
+import { AnsweredQuestion } from 'src/app/data/answeredQuestion';
 import { FactoryDTO } from 'src/app/data/factoryDTO';
 import { Result } from 'src/app/data/result';
 import { ApiService } from 'src/app/services/api-service/api.service';
@@ -48,8 +48,8 @@ export class HeaderComponent implements OnInit {
     if (this.endTest == true) {
       this.endTest = confirm("Чи бажаєте ви закінчити тест?");
       if (this.endTest == true) {
-        let answearedQuestions = FactoryDTO.GetAnswearedQuestions(this.questions);
-        this.apiService.answearTest(answearedQuestions).subscribe(result => {
+        let answeredQuestions = FactoryDTO.GetAnsweredQuestions(this.questions);
+        this.apiService.answerTest(answeredQuestions).subscribe(result => {
           this.resultService.result = <Result>result;
           this.resultService.resultSubject.next(this.resultService.result);
           this.resultService.isOpenedResult = true;

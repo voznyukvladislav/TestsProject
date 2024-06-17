@@ -13,7 +13,7 @@ export class ApiService {
     return this.http.get(`${Constants.api}/${Constants.tests}/${Constants.getTest}?count=50`);
   }
 
-  answearTest(questions: any[]) {
-    return this.http.post(`${Constants.api}/${Constants.tests}/${Constants.answearTest}`, questions);
+  answerTest(questions: any[]) {
+    return this.http.post(`${Constants.api}/${Constants.tests}/${Constants.answerTest}`, questions);
   }
 }

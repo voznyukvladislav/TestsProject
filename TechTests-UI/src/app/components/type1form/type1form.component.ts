@@ -8,8 +8,8 @@ import { Constants } from 'src/app/data/constants';
 })
 export class Type1formComponent implements OnInit {
 
-  @Input() answearText: string = '';
-  @Output() answear: EventEmitter<string> = new EventEmitter<string>();
+  @Input() answerText: string = '';
+  @Output() answer: EventEmitter<string> = new EventEmitter<string>();
 
   constructor() { }
 
@@ -17,10 +17,10 @@ export class Type1formComponent implements OnInit {
   }
 
   yes() {
-    this.answear.emit(Constants.yesAnswear);
+    this.answer.emit(Constants.yesAnswer);
   }
 
   no() {
-    this.answear.emit(Constants.noAnswear);
+    this.answer.emit(Constants.noAnswer);
   }
 }

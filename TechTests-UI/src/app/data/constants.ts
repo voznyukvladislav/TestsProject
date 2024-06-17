@@ -3,8 +3,8 @@ export class Constants {
 
     static tests: string = 'tests';
     static getTest: string = 'getTest';
-    static answearTest: string = 'answearTest';
+    static answerTest: string = 'answerTest';
     
-    static yesAnswear: string = 'Так';
-    static noAnswear: string = 'Ні';
+    static yesAnswer: string = 'Так';
+    static noAnswer: string = 'Ні';
 }

@@ -16,7 +16,7 @@ export class QuestionComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  setAnswear(answear: string) {
-    this.question.answear = answear;
+  setAnswer(answer: string) {
+    this.question.answer = answer;
   }
 }

@@ -1,17 +1,17 @@
-import { AnswearedQuestion } from "./answearedQuestion";
+import { AnsweredQuestion } from "./answeredQuestion";
 import { Question } from "./question";
 
 export class FactoryDTO {
-    static GetAnswearedQuestions(questions: Question[]): AnswearedQuestion[] {
-        let answearedQuestions: AnswearedQuestion[] = [];
+    static GetAnsweredQuestions(questions: Question[]): AnsweredQuestion[] {
+        let answeredQuestions: AnsweredQuestion[] = [];
         for (let i = 0; i < questions.length; i++) {
-          let answearedQuestion = new AnswearedQuestion();
-          answearedQuestion.id = questions[i].id;
-          answearedQuestion.answear = questions[i].answear;
+          let answeredQuestion = new AnsweredQuestion();
+          answeredQuestion.id = questions[i].id;
+          answeredQuestion.answer = questions[i].answer;
 
-          answearedQuestions.push(answearedQuestion);
+          answeredQuestions.push(answeredQuestion);
         }
 
-        return answearedQuestions;
+        return answeredQuestions;
     }
 }
