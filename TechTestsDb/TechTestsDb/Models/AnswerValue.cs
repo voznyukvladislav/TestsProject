@@ -10,6 +10,7 @@ namespace TechTestsDb.Models
     {
         public int Id { get; set; }
         public string Value { get; set; } = string.Empty;
+        public bool IsCorrect { get; set; }
 
         public Answer Answer { get; set; } = new();
         public int AnswerId { get; set; }

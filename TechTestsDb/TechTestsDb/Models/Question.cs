@@ -18,7 +18,10 @@ namespace TechTestsDb.Models
         public Type Type { get; set; } = new();
         public int TypeId { get; set; }
 
-        public List<Category> Categories { get; set; } = new();
-        public List<Answer> Answears { get; set; } = new();
+        public List<Category_Question> Category_Question { get; set; } = new();
+
+        public List<Answer> Answers { get; set; } = new();
+
+        public List<Question_QuestionGroup> Question_QuestionGroup { get; set; } = new();
     }
 }

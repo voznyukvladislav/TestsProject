@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\AngularProjects\\TechTests\\TechTestsDb\\TechTestsDb\\TechTestsDb.csproj": {}
+    "C:\\Users\\LEGA-USER\\source\\repos\\TechTestsDb\\TechTestsDb\\TechTestsDb.csproj": {}
   },
   "projects": {
-    "D:\\AngularProjects\\TechTests\\TechTestsDb\\TechTestsDb\\TechTestsDb.csproj": {
+    "C:\\Users\\LEGA-USER\\source\\repos\\TechTestsDb\\TechTestsDb\\TechTestsDb.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\AngularProjects\\TechTests\\TechTestsDb\\TechTestsDb\\TechTestsDb.csproj",
+        "projectUniqueName": "C:\\Users\\LEGA-USER\\source\\repos\\TechTestsDb\\TechTestsDb\\TechTestsDb.csproj",
         "projectName": "TechTestsDb",
-        "projectPath": "D:\\AngularProjects\\TechTests\\TechTestsDb\\TechTestsDb\\TechTestsDb.csproj",
+        "projectPath": "C:\\Users\\LEGA-USER\\source\\repos\\TechTestsDb\\TechTestsDb\\TechTestsDb.csproj",
         "packagesPath": "C:\\Users\\LEGA-USER\\.nuget\\packages\\",
-        "outputPath": "D:\\AngularProjects\\TechTests\\TechTestsDb\\TechTestsDb\\obj\\",
+        "outputPath": "C:\\Users\\LEGA-USER\\source\\repos\\TechTestsDb\\TechTestsDb\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\LEGA-USER\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -53,6 +53,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[7.0.20, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
             }
           },
           "imports": [

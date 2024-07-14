@@ -1,10 +1,52 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Compile Update="AddQuestionForm.cs">
+    <Compile Update="Forms\AddQuestionForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Form1.cs">
+    <Compile Update="Forms\DataForms\AnswerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\DataForms\AnswerValueForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\DataForms\CategoryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\DataForms\Category_QuestionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\DataForms\DescriptionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\DataForms\QuestionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\DataForms\QuestionGroupForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\DataForms\Question_QuestionGroupForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\DataForms\ResultForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\DataForms\TypeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\DataForms\UserForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\InitialForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\ManagementForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\NewAddQuestionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\QuestionGroupsForm.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

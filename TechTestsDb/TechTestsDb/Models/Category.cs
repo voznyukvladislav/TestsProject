@@ -11,6 +11,6 @@ namespace TechTestsDb.Models
         public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
 
-        public List<Question> Questions { get; set; } = new();
+        public List<Category_Question> Category_Question { get; set; } = new();
     }
 }

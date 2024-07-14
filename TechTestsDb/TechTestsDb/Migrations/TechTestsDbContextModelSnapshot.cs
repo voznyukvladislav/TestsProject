@@ -22,21 +22,6 @@ namespace TechTestsDb.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("CategoryQuestion", b =>
-                {
-                    b.Property<int>("CategoriesId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("QuestionsId")
-                        .HasColumnType("int");
-
-                    b.HasKey("CategoriesId", "QuestionsId");
-
-                    b.HasIndex("QuestionsId");
-
-                    b.ToTable("CategoryQuestion");
-                });
-
             modelBuilder.Entity("TechTestsDb.Models.Answer", b =>
                 {
                     b.Property<int>("Id")
@@ -66,6 +51,9 @@ namespace TechTestsDb.Migrations
                     b.Property<int>("AnswerId")
                         .HasColumnType("int");
 
+                    b.Property<bool>("IsCorrect")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Value")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -92,6 +80,21 @@ namespace TechTestsDb.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
+                });
+
+            modelBuilder.Entity("TechTestsDb.Models.Category_Question", b =>
+                {
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("QuestionId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CategoryId", "QuestionId");
+
+                    b.HasIndex("QuestionId");
+
+                    b.ToTable("Category_Questions");
                 });
 
             modelBuilder.Entity("TechTestsDb.Models.Description", b =>
@@ -141,6 +144,68 @@ namespace TechTestsDb.Migrations
                     b.ToTable("Questions");
                 });
 
+            modelBuilder.Entity("TechTestsDb.Models.QuestionGroup", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("QuestionGroups");
+                });
+
+            modelBuilder.Entity("TechTestsDb.Models.Question_QuestionGroup", b =>
+                {
+                    b.Property<int>("QuestionId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("QuestionGroupId")
+                        .HasColumnType("int");
+
+                    b.HasKey("QuestionId", "QuestionGroupId");
+
+                    b.HasIndex("QuestionGroupId");
+
+                    b.ToTable("Question_QuestionGroup");
+                });
+
+            modelBuilder.Entity("TechTestsDb.Models.Result", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("DateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("QuestionGroupId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ResultJson")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("QuestionGroupId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Results");
+                });
+
             modelBuilder.Entity("TechTestsDb.Models.Type", b =>
                 {
                     b.Property<int>("Id")
@@ -158,19 +223,28 @@ namespace TechTestsDb.Migrations
                     b.ToTable("Types");
                 });
 
-            modelBuilder.Entity("CategoryQuestion", b =>
+            modelBuilder.Entity("TechTestsDb.Models.User", b =>
                 {
-                    b.HasOne("TechTestsDb.Models.Category", null)
-                        .WithMany()
-                        .HasForeignKey("CategoriesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
-                    b.HasOne("TechTestsDb.Models.Question", null)
-                        .WithMany()
-                        .HasForeignKey("QuestionsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Login")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("PasswordHash")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Login")
+                        .IsUnique();
+
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("TechTestsDb.Models.Answer", b =>
@@ -195,6 +269,25 @@ namespace TechTestsDb.Migrations
                     b.Navigation("Answer");
                 });
 
+            modelBuilder.Entity("TechTestsDb.Models.Category_Question", b =>
+                {
+                    b.HasOne("TechTestsDb.Models.Category", "Category")
+                        .WithMany("Category_Question")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TechTestsDb.Models.Question", "Question")
+                        .WithMany("Category_Question")
+                        .HasForeignKey("QuestionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+
+                    b.Navigation("Question");
+                });
+
             modelBuilder.Entity("TechTestsDb.Models.Question", b =>
                 {
                     b.HasOne("TechTestsDb.Models.Description", "Description")
@@ -212,9 +305,52 @@ namespace TechTestsDb.Migrations
                     b.Navigation("Type");
                 });
 
+            modelBuilder.Entity("TechTestsDb.Models.Question_QuestionGroup", b =>
+                {
+                    b.HasOne("TechTestsDb.Models.QuestionGroup", "QuestionGroup")
+                        .WithMany("Question_QuestionGroup")
+                        .HasForeignKey("QuestionGroupId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TechTestsDb.Models.Question", "Question")
+                        .WithMany("Question_QuestionGroup")
+                        .HasForeignKey("QuestionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Question");
+
+                    b.Navigation("QuestionGroup");
+                });
+
+            modelBuilder.Entity("TechTestsDb.Models.Result", b =>
+                {
+                    b.HasOne("TechTestsDb.Models.QuestionGroup", "QuestionGroup")
+                        .WithMany("Results")
+                        .HasForeignKey("QuestionGroupId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TechTestsDb.Models.User", "User")
+                        .WithMany("Results")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("QuestionGroup");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("TechTestsDb.Models.Answer", b =>
                 {
                     b.Navigation("AnswerValues");
+                });
+
+            modelBuilder.Entity("TechTestsDb.Models.Category", b =>
+                {
+                    b.Navigation("Category_Question");
                 });
 
             modelBuilder.Entity("TechTestsDb.Models.Description", b =>
@@ -225,11 +361,27 @@ namespace TechTestsDb.Migrations
             modelBuilder.Entity("TechTestsDb.Models.Question", b =>
                 {
                     b.Navigation("Answears");
+
+                    b.Navigation("Category_Question");
+
+                    b.Navigation("Question_QuestionGroup");
+                });
+
+            modelBuilder.Entity("TechTestsDb.Models.QuestionGroup", b =>
+                {
+                    b.Navigation("Question_QuestionGroup");
+
+                    b.Navigation("Results");
                 });
 
             modelBuilder.Entity("TechTestsDb.Models.Type", b =>
                 {
                     b.Navigation("Questions");
+                });
+
+            modelBuilder.Entity("TechTestsDb.Models.User", b =>
+                {
+                    b.Navigation("Results");
                 });
 #pragma warning restore 612, 618
         }
