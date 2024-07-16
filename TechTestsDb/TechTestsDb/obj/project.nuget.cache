@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Q2u10m3znorub0o6/ZyKIdvtgXZRjC6D9AK96Kjl2fqbB8ZAimf0GTHE/9Y850gZc8QXMTFpm+frQVlQdNVBWA==",
+  "dgSpecHash": "lnI7N2mlRtdIxsjfv57+OwWPPhDC80jzSGik3IL6YM7OjCytRURkKNr+Sq4tcdmEq+gDfoF2WLOiSdQwod5LtQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\LEGA-USER\\source\\repos\\TechTestsDb\\TechTestsDb\\TechTestsDb.csproj",
+  "projectFilePath": "D:\\AngularProjects\\TechTests\\TechTestsDb\\TechTestsDb\\TechTestsDb.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\LEGA-USER\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\LEGA-USER\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",

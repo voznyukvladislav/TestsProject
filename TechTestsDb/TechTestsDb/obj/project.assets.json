@@ -3150,11 +3150,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\LEGA-USER\\source\\repos\\TechTestsDb\\TechTestsDb\\TechTestsDb.csproj",
+      "projectUniqueName": "D:\\AngularProjects\\TechTests\\TechTestsDb\\TechTestsDb\\TechTestsDb.csproj",
       "projectName": "TechTestsDb",
-      "projectPath": "C:\\Users\\LEGA-USER\\source\\repos\\TechTestsDb\\TechTestsDb\\TechTestsDb.csproj",
+      "projectPath": "D:\\AngularProjects\\TechTests\\TechTestsDb\\TechTestsDb\\TechTestsDb.csproj",
       "packagesPath": "C:\\Users\\LEGA-USER\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\LEGA-USER\\source\\repos\\TechTestsDb\\TechTestsDb\\obj\\",
+      "outputPath": "D:\\AngularProjects\\TechTests\\TechTestsDb\\TechTestsDb\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\LEGA-USER\\AppData\\Roaming\\NuGet\\NuGet.Config",

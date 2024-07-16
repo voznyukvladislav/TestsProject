@@ -113,9 +113,15 @@ namespace TechTestsDb.Forms
             this.answer2TextBox.Text = string.Empty;
 
             this.answerSetsComboBox.DataSource = new List<string>();
+            this.answerSetsComboBox.SelectedIndex = -1;
+            this.answerSetsComboBox.Text = string.Empty;
+
             this.answer1ListBox.DataSource = new List<string>();
             this.answer2ListBox.DataSource = new List<string>();
             this.UpdateAnswerSetsComboBox();
+
+            this.yesRadioButton.Checked = false;
+            this.noRadioButton.Checked = false;
 
             this.firstTypeGroupBox.Enabled = false;
             this.secondThirdTypeGroupBox.Enabled = false;
@@ -126,8 +132,8 @@ namespace TechTestsDb.Forms
         {
             if (this.descriptionsListBox.SelectedIndex != 0)
             {
-                this.Question.Description = this.Descriptions[this.descriptionsListBox.SelectedIndex];
-                this.Question.DescriptionId = this.Descriptions[this.descriptionsListBox.SelectedIndex].Id;
+                this.Question.Description = this.Descriptions[this.descriptionsListBox.SelectedIndex - 1];
+                this.Question.DescriptionId = this.Descriptions[this.descriptionsListBox.SelectedIndex - 1].Id;
             }
             else
             {
@@ -202,9 +208,13 @@ namespace TechTestsDb.Forms
             {
                 this.Question.Answers[0].AnswerValues.Add(new AnswerValue()
                 {
+                    Answer = this.Question.Answers[0],
                     IsCorrect = this.isCorrectAnswerCheckBox.Checked,
                     Value = this.answer2TextBox.Text
                 });
+
+                this.answer2TextBox.Text = string.Empty;
+                this.isCorrectAnswerCheckBox.Checked = false;
 
                 this.UpdateAnswers2ListBox();
             }

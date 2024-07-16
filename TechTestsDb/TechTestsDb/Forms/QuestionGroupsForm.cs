@@ -16,11 +16,14 @@ namespace TechTestsDb.Forms
     public partial class QuestionGroupsForm : Form
     {
         private TechTestsDbContext DbContext { get; set; }
-        private List<Question> Questions { get; set; } = new();
-        private List<QuestionGroup> QuestionGroups { get; set; } = new();
         private QuestionGroup QuestionGroup { get; set; } = new();
 
-        private List<int> SelectedQuestionIndexes { get; set; } = new();
+        private List<Question> Questions { get; set; } = new();
+        private List<QuestionGroup> QuestionGroups { get; set; } = new();
+
+        private List<Question> FreeQuestions { get; set; } = new();
+        private List<Question> SelectedQuestions { get; set; } = new();
+
         internal QuestionGroupsForm(TechTestsDbContext dbContext)
         {
             InitializeComponent();
@@ -38,57 +41,54 @@ namespace TechTestsDb.Forms
                 .ThenInclude(cq => cq.Category)
                 .ToList();
 
-            this.questionGroupsComboBox.DataSource = this.QuestionGroups
-                .Select(qg => $"Id: {qg.Id}, Name: {qg.Name}")
-                .ToList();
-
-            this.UpdateQuestionsListBox();
-        }
-
-        private void UpdateQuestionsListBox()
-        {
-            List<string> questionsListBoxDataSource = new();
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < this.Questions.Count; i++)
-            {
-                sb.Append($"Id: {this.Questions[i].Id}, Value: {this.Questions[i].Value}, ");
-                for (int j = 0; j < this.Questions[i].Category_Question.Count; j++)
-                {
-                    sb.Append($"{this.Questions[i].Category_Question[j].Category.Name}");
-                    if (j < this.Questions[i].Category_Question.Count - 1)
-                    {
-                        sb.Append(", ");
-                    }
-                }
-                questionsListBoxDataSource.Add(sb.ToString());
-                sb.Clear();
-            }
-
-            this.questionsListBox.DataSource = questionsListBoxDataSource;
-
-            this.SelectedQuestionIndexes = new();
-
-            QuestionGroup selectedQuestionGroup = this.QuestionGroups[this.questionGroupsComboBox.SelectedIndex];
-            for (int i = 0; i < selectedQuestionGroup.Question_QuestionGroup.Count; i++)
-            {
-                Question question = selectedQuestionGroup.Question_QuestionGroup[i].Question;
-                int questionIndex = this.Questions.FindIndex(q => q.Id == question.Id);
-                this.questionsListBox.SelectedIndex = questionIndex;
-                this.SelectedQuestionIndexes.Add(questionIndex);
-            }
+            this.UpdateQuestionGroupsComboBox();
+            this.UpdateLists();
         }
 
         private void UpdateQuestionGroupsComboBox()
         {
-            this.QuestionGroups = this.DbContext.QuestionGroups
-                .Include(qg => qg.Question_QuestionGroup)
-                .ThenInclude(qqg => qqg.Question)
-                .ThenInclude(q => q.Category_Question)
-                .ThenInclude(cq => cq.Category)
-                .ToList();
-            this.questionGroupsComboBox.DataSource = this.QuestionGroups
+            List<string> questionGroupsComboBoxDataSource = this.QuestionGroups
                 .Select(qg => $"Id: {qg.Id}, Name: {qg.Name}")
                 .ToList();
+            this.questionGroupsComboBox.DataSource = questionGroupsComboBoxDataSource;
+        }
+
+        private void UpdateQuestionsListBox(ListBox listBox, List<Question> questions)
+        {
+            List<string> listBoxDataSource = new List<string>();
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < questions.Count; i++)
+            {
+                sb.Append($"Id: {questions[i].Id}, Value: {questions[i].Value}, Categories: ");
+                for (int j = 0; j < questions[i].Category_Question.Count; j++)
+                {
+                    sb.Append($"{questions[i].Category_Question[j].Category.Name}");
+                    if (j < questions[i].Category_Question.Count - 1)
+                    {
+                        sb.Append(", ");
+                    }
+                }
+
+                listBoxDataSource.Add(sb.ToString());
+                sb.Clear();
+            }
+
+            listBox.DataSource = listBoxDataSource;
+        }
+
+        private void UpdateLists()
+        {
+            this.UpdateQuestionsListBox(this.freeQuestionsListBox, this.FreeQuestions);
+            this.UpdateQuestionsListBox(this.selectedQuestionsListBox, this.SelectedQuestions);
+        }
+
+        private void UpdateForm()
+        {
+            this.questionGroupNameTextBox.Text = string.Empty;
+            this.questionGroupsComboBox.DataSource = new List<string>();
+            this.questionGroupsComboBox.Text = string.Empty;
+            this.freeQuestionsListBox.DataSource = new List<string>();
+            this.selectedQuestionsListBox.DataSource = new List<string>();
         }
 
         private void addQuestionGroupButton_Click(object sender, EventArgs e)
@@ -99,27 +99,17 @@ namespace TechTestsDb.Forms
                 return;
             }
 
+            this.QuestionGroup = new();
             this.QuestionGroup.Name = this.questionGroupNameTextBox.Text;
+
+            this.QuestionGroups.Add(this.QuestionGroup);
+
             this.DbContext.QuestionGroups.Add(this.QuestionGroup);
             this.DbContext.SaveChanges();
 
             this.UpdateQuestionGroupsComboBox();
-            this.questionGroupNameTextBox.Text = string.Empty;
-        }
 
-        private void questionsListBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            this.QuestionGroup.Question_QuestionGroup = new();
-            this.SelectedQuestionIndexes = this.questionsListBox.SelectedIndices.Cast<int>().ToList();
-            for (int i = 0; i < this.SelectedQuestionIndexes.Count; i++)
-            {
-                this.QuestionGroup.Question_QuestionGroup.Add(new Question_QuestionGroup()
-                {
-                    QuestionGroup = this.QuestionGroup,
-                    Question = this.Questions[this.SelectedQuestionIndexes[i]],
-                    QuestionId = this.Questions[this.SelectedQuestionIndexes[i]].Id
-                });
-            }
+            this.questionGroupsComboBox.SelectedIndex = this.QuestionGroups.Count - 1;
         }
 
         private void applyButton_Click(object sender, EventArgs e)
@@ -130,7 +120,104 @@ namespace TechTestsDb.Forms
 
         private void questionGroupsComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (this.questionGroupsComboBox.SelectedIndex == -1)
+            {
+                this.QuestionGroup = new();
+                this.questionGroupNameTextBox.Text = string.Empty;
+                this.freeQuestionsListBox.DataSource = new List<string>();
+                this.selectedQuestionsListBox.DataSource = new List<string>();
+
+                return;
+            }
+
             this.QuestionGroup = this.QuestionGroups[this.questionGroupsComboBox.SelectedIndex];
+            this.questionGroupNameTextBox.Text = this.QuestionGroup.Name;
+            this.SelectedQuestions = this.QuestionGroup.Question_QuestionGroup
+                .Select(qqg => qqg.Question)
+                .ToList();
+
+            this.FreeQuestions = this.Questions
+                .Except(this.SelectedQuestions)
+                .ToList();
+
+            this.UpdateLists();
+        }
+
+        private void addQuestionButton_Click(object sender, EventArgs e)
+        {
+            if (this.freeQuestionsListBox.SelectedIndex == -1) return;
+
+            this.SelectedQuestions.Add(this.FreeQuestions[this.freeQuestionsListBox.SelectedIndex]);
+            this.FreeQuestions.RemoveAt(this.freeQuestionsListBox.SelectedIndex);
+
+            this.FreeQuestions = this.FreeQuestions
+                .OrderBy(fq => fq.Id)
+                .ToList();
+            this.SelectedQuestions = this.SelectedQuestions
+                .OrderBy(sq => sq.Id)
+                .ToList();
+
+            this.UpdateLists();
+        }
+
+        private void removeQuestionButton_Click(object sender, EventArgs e)
+        {
+            if (this.selectedQuestionsListBox.SelectedIndex == -1) return;
+
+            this.FreeQuestions.Add(this.SelectedQuestions[this.selectedQuestionsListBox.SelectedIndex]);
+            this.SelectedQuestions.RemoveAt(this.selectedQuestionsListBox.SelectedIndex);
+
+            this.FreeQuestions = this.FreeQuestions
+                .OrderBy(fq => fq.Id)
+                .ToList();
+            this.SelectedQuestions = this.SelectedQuestions
+                .OrderBy(sq => sq.Id)
+                .ToList();
+
+            this.UpdateLists();
+        }
+
+        private void saveChangesButton_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(this.QuestionGroup.Name))
+            {
+                MessageBox.Show(Constants.ERR_INPUT_IS_EMPTY);
+                return;
+            }
+
+            this.QuestionGroup.Name = this.questionGroupNameTextBox.Text;
+            this.QuestionGroup.Question_QuestionGroup = new();
+            for (int i = 0; i < this.SelectedQuestions.Count; i++)
+            {
+                this.QuestionGroup.Question_QuestionGroup.Add(new Question_QuestionGroup()
+                {
+                    Question = this.SelectedQuestions[i],
+                    QuestionId = this.SelectedQuestions[i].Id,
+                    QuestionGroup = this.QuestionGroup
+                });
+            }
+
+            this.DbContext.QuestionGroups.Update(this.QuestionGroup);
+            this.DbContext.SaveChanges();
+        }
+
+        private void deleteQuestionGroupButton_Click(object sender, EventArgs e)
+        {
+            if (this.questionGroupsComboBox.SelectedIndex == -1) return;
+
+            this.QuestionGroups.RemoveAt(this.questionGroupsComboBox.SelectedIndex);
+            
+            this.DbContext.QuestionGroups.Remove(this.QuestionGroup);
+            this.DbContext.SaveChanges();
+
+            this.UpdateQuestionGroupsComboBox();
+
+            if (this.QuestionGroups.Count > 0)
+                this.questionGroupsComboBox.SelectedIndex = 0;
+            else
+            {
+                this.UpdateForm();
+            }
         }
     }
 }
