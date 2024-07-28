@@ -26,6 +26,8 @@ export class ChatWindowComponent implements OnInit {
   }
 
   sendMessage() {
+    if (!this.messageText) return;
+
     let chatWindow = document.getElementById("chat");
     this.messages.push({role: 'user', content: `${this.messageText}`});
     setTimeout(() => {

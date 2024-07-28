@@ -13,11 +13,14 @@ import { TestService } from 'src/app/services/test-service/test.service';
 export class BodyComponent implements OnInit {
 
   isOpenedTestWindow: boolean = false;
+  isOpenedTestSelectionWindow: boolean = false;
   isOpenedHintWindow: boolean = false;
   isOpenedChatWindow: boolean = false;
 
   result: Result = new Result();
   isOpenedResult: boolean = false;
+
+  isOpenedResultsWindow: boolean = false;
 
   constructor(
     private testService: TestService,
@@ -27,6 +30,10 @@ export class BodyComponent implements OnInit {
 
     testService.isOpened.subscribe((v) => {
       this.isOpenedTestWindow = v;
+    });
+
+    testService.isTestSelectionWindowOpened.subscribe(v => {
+      this.isOpenedTestSelectionWindow = v;
     });
 
     hintService.isOpenedHintWindow.subscribe((v) => {
@@ -44,6 +51,10 @@ export class BodyComponent implements OnInit {
     resultService.isOpenedResultSubject.subscribe(v => {
       this.isOpenedResult = v;
     });
+
+    resultService.isOpenedResultsWindow.subscribe(
+      isOpened => this.isOpenedResultsWindow = isOpened
+    )
   }
 
   ngOnInit(): void {

@@ -1,0 +1,14 @@
+<div class="results-window-wrapper">
+    <div class="header">
+        <div class="header-item">{{title}}</div>
+        <div class="header-item cross" (click)="close()">×</div>
+    </div>
+    <div class="content">
+        <div class="result-short" (click)="showResult(i)" *ngFor="let result of shortResults; let i = index">
+            <div class="info flex1">#{{i + 1}}</div>
+            <div class="info flex3">{{result.testName}}</div>
+            <div class="info flex3">{{result.result}}</div>
+            <div class="info flex3">{{result.dateTime}}</div>
+        </div>
+    </div>
+</div>

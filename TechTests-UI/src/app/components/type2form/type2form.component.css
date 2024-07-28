@@ -3,7 +3,7 @@
     justify-content: center;
     padding: 20px;
 }
-.answear {
+.answer {
     width: 80%;
     padding: 15px;
     outline: 2px solid var(--secondary-color);
@@ -15,6 +15,6 @@
     box-sizing: border-box;
     border: 0;
 }
-.answear:focus {
+.answer:focus {
     outline: 5px solid var(--secondary-color);
 }

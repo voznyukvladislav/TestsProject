@@ -1,0 +1,8 @@
+<div class="answers-wrapper">
+    <div class="answer-wrapper" *ngFor="let answer of answers; index as i" (click)="check(i)">
+        <div class="checkbox" [ngClass]="{'checkbox-checked': answer.checked}">
+            <div class="checkbox-filling" [ngClass]="{'checkbox-filling-checked': answer.checked}"></div>
+        </div>
+        {{answer.value}}
+    </div>
+</div>

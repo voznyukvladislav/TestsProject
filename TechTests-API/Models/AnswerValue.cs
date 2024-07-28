@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace TechTests_API.Models
 {
-    internal class AnswerValue
+    public class AnswerValue
     {
         public int Id { get; set; }
         public string Value { get; set; } = string.Empty;
+        public bool IsCorrect { get; set; }
 
         public Answer Answer { get; set; } = new();
         public int AnswerId { get; set; }

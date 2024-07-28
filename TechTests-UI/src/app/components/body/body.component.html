@@ -1,6 +1,8 @@
 <div class="body-wrapper">
+    <app-test-selection [ngClass]="{'opened': isOpenedTestSelectionWindow}"></app-test-selection>
     <app-test-window [ngClass]="{'opened': isOpenedTestWindow}"></app-test-window>
     <app-hint-window [ngClass]="{'opened-hint': isOpenedHintWindow}"></app-hint-window>
     <app-result-window [result]="result" [ngClass]="{'opened-result': isOpenedResult}"></app-result-window>
     <app-chat-window [ngClass]="{'opened-chat': isOpenedChatWindow}"></app-chat-window>
+    <app-results-window [ngClass]="{'opened': isOpenedResultsWindow}"></app-results-window>
 </div>

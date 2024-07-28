@@ -8,6 +8,14 @@
     align-items: center;
     position: relative;
 }
+app-test-selection {
+    position: absolute;
+    width: 75%;
+    height: 75%;
+    z-index: -1;
+    opacity: 0;
+    transition: var(--fast-transition);
+}
 app-test-window {
     position: absolute;
     width: 75%;
@@ -33,6 +41,14 @@ app-result-window {
     transition: var(--fast-transition);
 }
 app-chat-window {
+    position: absolute;
+    width: 75%;
+    height: 75%;
+    z-index: -1;
+    opacity: 0;
+    transition: var(--fast-transition);
+}
+app-results-window {
     position: absolute;
     width: 75%;
     height: 75%;

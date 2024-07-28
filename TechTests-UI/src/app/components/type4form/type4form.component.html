@@ -1,0 +1,8 @@
+<div class="answers-wrapper" #answersBlock>
+    <div class="answer" (click)="check(i)" *ngFor="let answer of answers; index as i">
+        <div class="radio-wrapper" [ngClass]="{'radio-wrapper-checked': answer.checked}">
+            <div class="radio-filling" [ngClass]="{'radio-filling-checked': answer.checked}"></div>
+        </div>
+        {{answer.value}}
+    </div>
+</div>

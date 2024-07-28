@@ -6,31 +6,31 @@
     <div class="content">
         <div class="category" *ngFor="let category of result.categoryResults">
             <div class="category-item">
-                <div>Назва категорії</div>
+                <div>Categories</div>
                 <div>{{category.categoryName}}</div>
             </div>
             <div class="category-item">
-                <div>Кількість балів</div>
+                <div>Points</div>
                 <div>{{category.result}} / {{category.total}}</div>
             </div>
             <div class="category-item">
-                <div>Відсоток</div>
+                <div>Percentage</div>
                 <div>{{category.percentage}}</div>
             </div>
         </div>
         <div class="category">
             <div class="category-item">
-                <div>Загальна кількість балів</div>
+                <div>Total points</div>
                 <div>{{result.result}} / {{result.total}}</div>
             </div>
             <div class="category-item">
-                <div>Загальний відсоток</div>
+                <div>Total percentage</div>
                 <div>{{result.percentage}}</div>
             </div>
         </div>
         <div class="category">
             <div class="category-item">
-                <div>Кількість звернень до помічника</div>
+                <div>AI help requests</div>
                 <div>{{aiHelpCounter}}</div>
             </div>
         </div>

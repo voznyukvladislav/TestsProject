@@ -8,6 +8,9 @@ import { Constants } from 'src/app/data/constants';
 })
 export class Type1formComponent implements OnInit {
 
+  yesAnswer: string = Constants.yesAnswer;
+  noAnswer: string = Constants.noAnswer;
+
   @Input() answerText: string = '';
   @Output() answer: EventEmitter<string> = new EventEmitter<string>();
 

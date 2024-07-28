@@ -9,5 +9,6 @@
         public string Categories { get; set; } = string.Empty;
         public string Type { get; set; } = string.Empty;
         public string Answer { get; set; } = string.Empty;
+        public List<AnswerDTO> Answers { get; set; } = new();
     }
 }

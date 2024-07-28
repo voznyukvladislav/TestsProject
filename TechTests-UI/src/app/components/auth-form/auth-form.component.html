@@ -1,0 +1,10 @@
+<div class="auth-wrapper" [ngClass]="{'background width0 height0 opacity0': isAuthenticated, 'front width100 height100 opacity1': !isAuthenticated}">
+    <div class="shadow"></div>
+    <div class="auth-window">
+        <div class="auth-window-header">{{title}}</div>
+        <input type="text" [ngClass]="{'red': !isAvailableLogin}" #loginBlock class="input" placeholder="Enter login..." [(ngModel)]="authForm.login" (keyup.enter)="action()" (input)="check()">
+        <input type="password" class="input" placeholder="Enter password..." [(ngModel)]="authForm.password" (keyup.enter)="action()">
+        <input type="button" class="button" value="{{title}}" (click)="action()">
+        <div class="text" (click)="change()">{{link}}</div>
+    </div>
+</div>

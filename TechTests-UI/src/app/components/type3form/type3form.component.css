@@ -2,10 +2,12 @@
     display: flex;
     justify-content: center;
     padding: 20px;
+    height: 100%;
 }
-.answear {
+.answer {
     width: 80%;
     min-height: 200px;
+    overflow-y: hidden;
     padding: 10px;
     outline: 2px solid var(--secondary-color);
     border-radius: 20px;
@@ -19,6 +21,6 @@
     font-family: "Open Sans", sans-serif;
     font-optical-sizing: auto;
 }
-.answear:focus {
+.answer:focus {
     outline: 5px solid var(--secondary-color);
 }

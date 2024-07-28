@@ -1,0 +1,5 @@
+<div class="message-wrapper" *ngIf="message.status" #messageBlock>
+    <div class="message-title">{{message.title}}</div>
+    <div class="underline" #underline [ngClass]="{'green': message.status == statusSuccess, 'red': message.status == statusFailed}"></div>
+    <div class="message-value">{{message.value}}</div>
+</div>

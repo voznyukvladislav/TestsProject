@@ -15,6 +15,12 @@ import { Type2formComponent } from './components/type2form/type2form.component';
 import { Type3formComponent } from './components/type3form/type3form.component';
 import { ResultWindowComponent } from './components/result-window/result-window.component';
 import { ChatWindowComponent } from './components/chat-window/chat-window.component';
+import { AuthFormComponent } from './components/auth-form/auth-form.component';
+import { MessageComponent } from './components/message/message.component';
+import { TestSelectionComponent } from './components/test-selection/test-selection.component';
+import { Type4formComponent } from './components/type4form/type4form.component';
+import { Type5formComponent } from './components/type5form/type5form.component';
+import { ResultsWindowComponent } from './components/results-window/results-window.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +34,13 @@ import { ChatWindowComponent } from './components/chat-window/chat-window.compon
     Type2formComponent,
     Type3formComponent,
     ResultWindowComponent,
-    ChatWindowComponent
+    ChatWindowComponent,
+    AuthFormComponent,
+    MessageComponent,
+    TestSelectionComponent,
+    Type4formComponent,
+    Type5formComponent,
+    ResultsWindowComponent
   ],
   imports: [
     BrowserModule,

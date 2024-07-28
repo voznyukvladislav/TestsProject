@@ -1,17 +1,19 @@
 <div class="hint-window-wrapper">
     <div class="hint-window-header">
-        <div class="title">Справка</div>
+        <div class="title">Help</div>
         <div class="cross" (click)="hintService.popup()">×</div>
     </div>
     <div class="hints">
-        Програма розроблена для тестування навичок людей з питань ІТ.<br> <br>
-        Кількість балів за запитання вказана в дужках (бали за спільне запитання, бали за специфічне запитання). Запитання може відноситися до одного з трьох типів: <br> <br>
-        І - запитання з відповіддю "Так" чи "Ні" (1, 2), <br>
-        ІІ - запитання з відкритою відповіддю, може містити одне або декілька слів (2, 4), <br>
-        ІІІ - запитання з відкритою відповіддю, яке містить декілька відповідей. (4, 8). <br> <br>
-        
-        Категорія або категорії кожного запитання вказані у верхньому правому кутку вікна відповіді.
+        Main purpose of this software is providing users with testing functional.<br> <br>
+        Test is a collection of different questions, which can be related to one or many categories. Points for each type is specified in brackets. Each question belongs to one of the following types: <br> <br>
+        І - Question with answer "Yes" or "No" (2),<br>
+        ІІ - Open-ended questions. Its answer can contain one or few words (4),<br>
+        ІІІ - Open-ended questions with many answers. Answers should be divided by newline via pressing "Enter" key (8).<br>
+        IV - Test question with one correct answer (2).<br>
+        V - Test questions with multiple correct answers (6).<br> <br>
         <br> <br>
-        Для коректної валідації відповідей на запитання третього типу, користувач повинен переходити на новий рядок з кожною даною відповіддю.
+
+        User can check own results using "User" button in header. <br> <br>
+        You can use help of the AI (Chat-GPT 4.o) assistant using "AI" button in the header. <br><br>
     </div>
 </div>

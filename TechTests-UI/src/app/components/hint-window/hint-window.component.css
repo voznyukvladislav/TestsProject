@@ -10,14 +10,13 @@
 .hint-window-header {
     display: flex;
     justify-content: space-between;
-    padding: 20px;
+    padding: 10px 25px;
     color: var(--font-color);
     font-weight: 600;
     background-color: var(--main-body-color);
     border-radius: 35px 35px 0 0;
     box-sizing: border-box;
     border-bottom: 1px solid black;
-    height: 15%;
 }
 .title {
     display: flex;
@@ -44,4 +43,5 @@
     color: var(--font-color);
     font-size: 18px;
     padding: 15px;
+    overflow-y: hidden;
 }

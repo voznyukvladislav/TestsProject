@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TechTests_API.Models
 {
-    internal class Answer
+    public class Answer
     {
         public int Id { get; set; }
         public List<AnswerValue> AnswerValues { get; set; } = new();

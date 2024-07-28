@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Question } from 'src/app/data/question';
-import { ApiService } from 'src/app/services/api-service/api.service';
+import { QuestionGroup } from 'src/app/data/questionGroup';
 import { OpenaiApiService } from 'src/app/services/openai-api-service/openai-api.service';
 import { TestService } from 'src/app/services/test-service/test.service';
 
@@ -10,6 +10,10 @@ import { TestService } from 'src/app/services/test-service/test.service';
   styleUrls: ['./test-window.component.css']
 })
 export class TestWindowComponent implements OnInit {
+
+  testId: number = 0;
+  testName: string = '';
+
   questions: any = [];
   questionIndex: number = 0;
 
@@ -17,6 +21,25 @@ export class TestWindowComponent implements OnInit {
     this.testService.questions.subscribe(q => {
       this.questions = q;
     });
+
+    this.testService.selectedTestId.subscribe(
+      value => {
+        this.testId = value;
+
+        this.testService.getQuestions(this.testId).subscribe(
+          questions => {
+            this.questions = questions as Question[];
+            this.testService.questions.next(this.questions);
+          }
+        );
+
+        this.testService.getQuestionGroup(this.testId).subscribe(
+          questionGroup => {
+            this.testName = (questionGroup as QuestionGroup).name
+          }
+        );
+      }
+    )
   }
 
   ngOnInit(): void {
@@ -31,6 +54,8 @@ export class TestWindowComponent implements OnInit {
       else this.questionIndex = this.questions.length - 1;
       questionBlock.style.opacity = 1;
     }, 200);
+    
+    this.notifyTestService();
   }
   
   right() {
@@ -42,6 +67,8 @@ export class TestWindowComponent implements OnInit {
       else this.questionIndex = 0;
       questionBlock.style.opacity = 1;
     }, 200);
+
+    this.notifyTestService();
   }
 
   notifyTestService() {

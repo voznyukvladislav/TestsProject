@@ -1,0 +1,17 @@
+<div class="test-selection-wrapper">
+    <div class="test-selection-header">Select test</div>
+    <div class="list-wrapper">
+        <div class="input-wrapper" (click)="list()" [ngClass]="{'border-change': isOpenedList}">
+            <div class="input-text">{{title}}</div>
+            <div class="icon-wrapper">
+                <img class="icon down" src="..\assets\arrow.png" [ngClass]="{'opacity0': isOpenedList}">
+                <img class="icon up" src="..\assets\arrow.png" [ngClass]="{'opacity0': !isOpenedList}">
+            </div>
+        </div>
+        <div class="items" [ngClass]="{'opened': isOpenedList, 'opacity0': !isOpenedList}">
+            <div class="item" (click)="select(i)" *ngFor="let item of questionGroups; index as i">{{item.name}}</div>
+        </div>
+    </div>
+    
+    <div class="button" (click)="apply()">Apply</div>
+</div>

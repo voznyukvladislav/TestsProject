@@ -1,26 +1,47 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using TechTests_API.Data;
 using TechTests_API.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Configuration
+var configuration = new ConfigurationBuilder()
+    .SetBasePath(Directory.GetCurrentDirectory())
+    .AddJsonFile("appsettings.json")
+    .Build();
+
+// Authentication and authorization
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.Cookie.Name = "TestAppCookie";
+        options.Cookie.HttpOnly = false;
+        options.Cookie.SameSite = SameSiteMode.Lax;
+        options.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
+    });
+builder.Services.AddAuthorization();
 
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
     {
         options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
     });
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
+// Swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// Database context
 builder.Services.AddDbContext<TechTestsDbContext>(options =>
 {
-    options.UseSqlServer(@"Server=LEGA\SQLEXPRESS;Database=TechTestsDb;Trusted_Connection=True;TrustServerCertificate=True");
+    string connectionString = configuration.GetConnectionString("LocalConnection");
+    options.UseSqlServer(connectionString);
 });
 
+// Custom services
 builder.Services.AddTransient<TestService>();
+builder.Services.AddTransient<AuthService>();
 
 var app = builder.Build();
 
@@ -33,15 +54,19 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
 
 app.UseCors(options =>
 {
-    options.AllowAnyHeader();
-    options.AllowAnyMethod();
-    options.AllowAnyOrigin();
+    string origin = "http://localhost:4200";
+
+    options.WithOrigins(origin)
+        .AllowAnyHeader()
+        .AllowAnyHeader()
+        .AllowCredentials();
 });
 
 app.Run();

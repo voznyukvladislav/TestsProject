@@ -25,7 +25,7 @@
 .button:hover {
     opacity: 1;
 }
-.hint-wrapper {
+.button-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -39,12 +39,21 @@
     background-color: var(--main-body-color);
     padding: 10px;
 }
-.hint-wrapper:hover {
+.button-wrapper:hover {
     opacity: 1;
 }
-.hint {
+.button-wrapper:hover .button-content {
+    transform: scale(var(--scale-after));
+}
+.button-wrapper:hover .icon {
+    transform: scale(0.9);
+}
+.button-content {
+    transform: scale(var(--scale-before));
+    transition: var(--fast-transition);
+    color: #eee;
+    font-size: var(--header-item-title-font-size);
     font-weight: 600;
-    font-size: 30px;
     color: var(--font-color);
 }
 .side-header {
@@ -54,22 +63,9 @@
     gap: 10px;
     font-weight: 600;
 }
-.ai-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    border: 2px solid var(--secondary-color);    
+.icon {
+    width: auto;
+    height: 35px;
+    transform: scale(var(--scale-before));
     transition: var(--fast-transition);
-    opacity: 0.8;
-    cursor: pointer;
-    background-color: var(--main-body-color);
-    padding: 10px;
-    color: #eee;
-    font-size: 20px;
-}
-.ai-button:hover {
-    opacity: 1;
 }

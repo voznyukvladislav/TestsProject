@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TechTests_API.Models
 {
-    internal class Type
+    public class Type
     {
         public int Id { get; set; }
         public string Name { get; set; } = string.Empty;

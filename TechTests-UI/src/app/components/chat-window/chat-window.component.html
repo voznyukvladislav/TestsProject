@@ -1,6 +1,6 @@
 <div class="chat-window-wrapper">
     <div class="header">
-        <div class="title">Інтелектуальний помічник</div>
+        <div class="title">Intelligent assistant</div>
         <div class="cross" (click)="chat()">×</div>
     </div>
     <div class="chat" id="chat">
@@ -13,7 +13,11 @@
         </div>
     </div>
     <div class="footer">
-        <input class="input" #input type="text" placeholder="Введіть ваше повідомлення" [(ngModel)]="messageText" (keydown.enter)="sendMessage()">
-        <div class="button" (click)="sendMessage()">Відправити</div>
+        <!-- <input class="input" #input type="text" placeholder="Введіть ваше повідомлення" [(ngModel)]="messageText" (keydown.enter)="sendMessage()">
+        <div class="button" (click)="sendMessage()">Відправити</div> -->
+        <div class="input-wrapper">
+            <input class="input" #input type="text" placeholder="Enter your message..." [(ngModel)]="messageText" (keydown.enter)="sendMessage()">
+            <img src="..\assets\paper-plane.png" class="icon">
+        </div>
     </div>
 </div>

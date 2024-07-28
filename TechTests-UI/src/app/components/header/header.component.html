@@ -1,11 +1,22 @@
 <div class="header">
-    <div class="button" (click)="test()">
-        {{title}}
+    <div class="button" (click)="startTest()" *ngIf="!isTestOpened">
+        {{startTestTitle}}
+    </div>
+    <div class="button" (click)="finishTest()" *ngIf="isTestOpened">
+        {{finishTestTitle}}
     </div>
     <div class="side-header">
-        <div class="ai-button" (click)="chat()">AI</div>
-        <div class="hint-wrapper" (click)="hintService.popup()">
-            <div class="hint">?</div>
+        <div class="button-wrapper" (click)="chat()">
+            <div class="button-content">AI</div>
+        </div>
+        <div class="button-wrapper" (click)="hintService.popup()">
+            <div class="button-content">?</div>
+        </div>
+        <div class="button-wrapper" (click)="results()">
+            <img class="icon" src="..\assets\user.png">
+        </div>
+        <div class="button-wrapper" (click)="logout()" *ngIf="isAuthenticated">
+            <img class="icon" src="..\assets\logout.png">
         </div>
     </div>
 </div>

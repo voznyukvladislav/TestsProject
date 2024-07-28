@@ -2,6 +2,7 @@
 {
     public class ResultDTO
     {
+        public int QuestionGroupId { get; set; }
         public string Title { get; set; } = string.Empty;
         public List<CategoryResultDTO> CategoryResults { get; set; } = new();
         public double Result { get; set; }

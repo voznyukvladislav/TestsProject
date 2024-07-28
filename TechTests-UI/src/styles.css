@@ -11,19 +11,39 @@ html {
     --main-transition: all 0.65s ease;
     --fast-transition: all 0.3s ease;
     --very-fast-transition: all 0.2s ease;
+    --message-underline-transition: all 5s ease;
 
     --font-color: #eee;
     --main-color: #333333;
     --main-color-hover: #444444;
     --secondary-color: #007acc;
     --main-body-color: #222222;
+    --main-body-color-hover: #2A2A2A;
     --selected-button-color: #111111;
+    --message-body-color: #191919;
+    --red-color: rgb(165, 0, 0);
+    --green-color: rgb(0, 119, 0);
 
     --title-font-size: 20px;
     --title-font-weight: 500;
 
     --font-size: 16px;
     --font-weight: 400;
+
+    --message-title-font-size: 16px;
+    --message-title-font-weight: 500;
+
+    --message-value-font-size: 14px;
+    --message-value-font-weight: 400;
+
+    --header-item-size: 30px;
+    --header-item-title-font-size: 26px;
+    
+    --scale-before: 0.75;
+    --scale-large-before: 0.85;
+    --scale-after: 1;
+
+    --background-z-index: -1;
 }
 body {
     margin: 0;
@@ -34,4 +54,34 @@ body {
 app-root {
     width: 100%;
     height: 100%;
+}
+.width0 {
+    width: 0;
+}
+.width100 {
+    width: 100%;
+}
+.height0 {
+    height: 0;
+}
+.height100 {
+    height: 100%;
+}
+.opacity0 {
+    opacity: 0;
+}
+.opacity1 {
+    opacity: 1;
+}
+.background {
+    z-index: -1;
+}
+.front {
+    z-index: 1;
+}
+.flex1 {
+    flex: 1;
+}
+.flex3 {
+    flex: 3;
 }

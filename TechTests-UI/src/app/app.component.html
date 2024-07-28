@@ -1,3 +1,4 @@
-<router-outlet></router-outlet>
+<app-auth-form></app-auth-form>
 <app-header></app-header>
 <app-body></app-body>
+<app-message *ngFor="let message of messages" [message]="message"></app-message>
